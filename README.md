@@ -11,6 +11,6 @@
   <p>Ayrıca, kullanıcıların arama geçmişi ve favori şehirleri yalnızca kullanıcının cihazında yerel olarak saklanır ve hiçbir şekilde üçüncü taraflara aktarılmaz.</p>
   <p>OpenWeather ve benzeri servislerin kendi gizlilik politikaları farklı olabilir; kullanıcıların bu politikaları incelemesi önerilir.</p>
   <p>Gizlilik politikamız zaman zaman güncellenebilir. Güncel politika için uygulama içi veya mağaza sayfasını kontrol edebilirsiniz.</p>
-  <p>Herhangi bir sorunuz varsa bizimle iletişime geçebilirsiniz: <strong>ismailsoylu0405@gmail.com</strong></p>
+  <p>Herhangi bir sorunuz varsa bizimle iletişime geçebilirsiniz: <strong>nova.orion.dev@gmail.com</strong></p>
 </body>
 </html>
