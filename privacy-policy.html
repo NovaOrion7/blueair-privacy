@@ -2,15 +2,470 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blue Air Gizlilik Politikası</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #0a0a2a;
+      color: #e0e0ff;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+    
+    /* Deep space background with stars */
+    .space-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: #000011;
+    }
+    
+    /* Orion constellation pattern */
+    .orion-constellation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 40px 70px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 60px 40px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 80px 90px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 100px 50px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 120px 80px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 140px 20px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 160px 60px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(3px 3px at 180px 100px, #ffd700, rgba(255, 215, 0, 0)),
+        radial-gradient(2px 2px at 200px 30px, #9370db, rgba(147, 112, 219, 0)),
+        radial-gradient(2px 2px at 220px 70px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 240px 40px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(3px 3px at 260px 90px, #ffd700, rgba(255, 215, 0, 0)),
+        radial-gradient(2px 2px at 280px 50px, #9370db, rgba(147, 112, 219, 0)),
+        radial-gradient(2px 2px at 300px 80px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 320px 20px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 340px 60px, #9370db, rgba(147, 112, 219, 0)),
+        radial-gradient(3px 3px at 360px 100px, #ffd700, rgba(255, 215, 0, 0)),
+        radial-gradient(2px 2px at 380px 30px, #87cefa, rgba(135, 206, 250, 0)),
+        radial-gradient(2px 2px at 400px 70px, #87cefa, rgba(135, 206, 250, 0));
+      background-repeat: repeat;
+      background-size: 420px 120px;
+      animation: constellationMove 120s linear infinite;
+      opacity: 0.7;
+    }
+    
+    /* Nebula effect */
+    .nebula {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: 
+        radial-gradient(ellipse at 20% 80%, rgba(135, 206, 250, 0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 20%, rgba(147, 112, 219, 0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at 40% 40%, rgba(255, 215, 0, 0.1) 0%, transparent 30%);
+      animation: nebulaPulse 15s ease-in-out infinite alternate;
+    }
+    
+    /* Stars */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+    }
+    
+    .twinkling-stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: 
+        radial-gradient(1px 1px at 25px 35px, #fff, transparent),
+        radial-gradient(1px 1px at 50px 75px, #fff, transparent),
+        radial-gradient(1px 1px at 75px 45px, #fff, transparent),
+        radial-gradient(1px 1px at 100px 95px, #fff, transparent),
+        radial-gradient(1px 1px at 125px 55px, #fff, transparent),
+        radial-gradient(1px 1px at 150px 85px, #fff, transparent),
+        radial-gradient(1px 1px at 175px 25px, #fff, transparent),
+        radial-gradient(1px 1px at 200px 65px, #fff, transparent),
+        radial-gradient(1px 1px at 225px 35px, #fff, transparent),
+        radial-gradient(1px 1px at 250px 75px, #fff, transparent),
+        radial-gradient(1px 1px at 275px 45px, #fff, transparent),
+        radial-gradient(1px 1px at 300px 95px, #fff, transparent),
+        radial-gradient(1px 1px at 325px 55px, #fff, transparent),
+        radial-gradient(1px 1px at 350px 85px, #fff, transparent),
+        radial-gradient(1px 1px at 375px 25px, #fff, transparent),
+        radial-gradient(1px 1px at 400px 65px, #fff, transparent);
+      background-repeat: repeat;
+      background-size: 420px 120px;
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+    
+    /* Shooting stars */
+    .shooting-star {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(135, 206, 250, 1) 50%, rgba(255,255,255,0) 100%);
+      border-radius: 50%;
+      filter: drop-shadow(0 0 6px rgba(135, 206, 250, 0.8));
+      animation: shooting 3s linear infinite;
+      opacity: 0;
+    }
+    
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background-color: rgba(135, 206, 250, 0.7);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    header {
+      text-align: center;
+      padding: 30px 0;
+      background: linear-gradient(135deg, rgba(26, 26, 74, 0.8), rgba(10, 10, 42, 0.8));
+      border-bottom: 2px solid #4a4a8a;
+      margin-bottom: 30px;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(135, 206, 250, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      z-index: -1;
+    }
+    
+    h1 {
+      color: #87cefa;
+      font-size: 2.5em;
+      margin: 0;
+      text-shadow: 0 0 10px rgba(135, 206, 250, 0.7);
+      position: relative;
+      z-index: 2;
+    }
+    
+    h2 {
+      color: #9370db;
+      border-bottom: 1px solid #4a4a8a;
+      padding-bottom: 10px;
+      margin-top: 30px;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      font-size: 1.1em;
+    }
+    
+    .highlight {
+      background-color: rgba(135, 206, 250, 0.1);
+      padding: 15px;
+      border-left: 4px solid #87cefa;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(2px);
+    }
+    
+    .highlight::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(135, 206, 250, 0.1), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 3s infinite;
+    }
+    
+    .contact {
+      background-color: rgba(147, 112, 219, 0.15);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 30px 0;
+      border: 1px solid #9370db;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(3px);
+    }
+    
+    .contact::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        transparent, 
+        rgba(135, 206, 250, 0.3), 
+        transparent 30%
+      );
+      animation: rotate 5s linear infinite;
+      z-index: -1;
+    }
+    
+    .contact strong {
+      color: #87cefa;
+      font-size: 1.2em;
+      position: relative;
+      z-index: 2;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      border-top: 1px solid #4a4a8a;
+      color: #a0a0c0;
+      font-size: 0.9em;
+    }
+    
+    @keyframes twinkle {
+      0% { opacity: 0.2; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    
+    @keyframes constellationMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-120px); }
+    }
+    
+    @keyframes nebulaPulse {
+      0% { opacity: 0.5; }
+      100% { opacity: 0.8; }
+    }
+    
+    @keyframes shooting {
+      0% {
+        transform: translateX(-100px) translateY(-100px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px));
+        opacity: 0;
+      }
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(20px);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Gizlilik Politikası</h1>
-  <p>Blue Air, kullanıcıların gizliliğine büyük önem verir. Bu uygulama, kullanıcıların kişisel verilerini toplamaz, işlemez veya üçüncü taraflarla paylaşmaz.</p>
-  <p>Uygulama, hava durumu verilerini göstermek amacıyla OpenWeather gibi üçüncü taraf API'leri kullanır. Bu servisler, konum bilgisi talep edebilir ancak bu veriler yalnızca geçici olarak kullanılır ve geliştirici tarafından saklanmaz veya üçüncü taraflarla paylaşılmaz.</p>
-  <p>Ayrıca, kullanıcıların arama geçmişi ve favori şehirleri yalnızca kullanıcının cihazında yerel olarak saklanır ve hiçbir şekilde üçüncü taraflara aktarılmaz.</p>
-  <p>OpenWeather ve benzeri servislerin kendi gizlilik politikaları farklı olabilir; kullanıcıların bu politikaları incelemesi önerilir.</p>
-  <p>Gizlilik politikamız zaman zaman güncellenebilir. Güncel politika için uygulama içi veya mağaza sayfasını kontrol edebilirsiniz.</p>
-  <p>Herhangi bir sorunuz varsa bizimle iletişime geçebilirsiniz: <strong>nova.orion.dev@gmail.com</strong></p>
+  <!-- Space background elements -->
+  <div class="space-background"></div>
+  <div class="orion-constellation"></div>
+  <div class="nebula"></div>
+  <div class="stars" id="stars"></div>
+  <div class="twinkling-stars"></div>
+  <div class="particles" id="particles"></div>
+  <div class="shooting-stars" id="shooting-stars"></div>
+  
+  <div class="container">
+    <header>
+      <h1>Blue Air Gizlilik Politikası</h1>
+    </header>
+    
+    <div class="highlight">
+      <p>Blue Air, kullanıcıların gizliliğine büyük önem verir. Bu uygulama, kullanıcıların kişisel verilerini toplamaz, işlemez veya üçüncü taraflarla paylaşmaz.</p>
+    </div>
+    
+    <h2>Veri Kullanımı</h2>
+    <p>Uygulama, hava durumu verilerini göstermek amacıyla OpenWeather gibi üçüncü taraf API'leri kullanır. Bu servisler, konum bilgisi talep edebilir ancak bu veriler yalnızca geçici olarak kullanılır ve geliştirici tarafından saklanmaz veya üçüncü taraflarla paylaşılmaz.</p>
+    
+    <h2>Yerel Veri Saklama</h2>
+    <p>Ayrıca, kullanıcıların arama geçmişi ve favori şehirleri yalnızca kullanıcının cihazında yerel olarak saklanır ve hiçbir şekilde üçüncü taraflara aktarılmaz.</p>
+    
+    <h2>Üçüncü Taraf Hizmetler</h2>
+    <p>OpenWeather ve benzeri servislerin kendi gizlilik politikaları farklı olabilir; kullanıcıların bu politikaları incelemesi önerilir.</p>
+    
+    <h2>Güncellemeler</h2>
+    <p>Gizlilik politikamız zaman zaman güncellenebilir. Güncel politika için uygulama içi veya mağaza sayfasını kontrol edebilirsiniz.</p>
+    
+    <div class="contact">
+      <p>Herhangi bir sorunuz varsa bizimle iletişime geçebilirsiniz:</p>
+      <p><strong>nova.orion.dev@gmail.com</strong></p>
+    </div>
+    
+    <footer>
+      <p>Blue Air - Nova Orion &copy; 2025</p>
+    </footer>
+  </div>
+  
+  <script>
+    // Create dynamic stars
+    document.addEventListener('DOMContentLoaded', function() {
+      const starsContainer = document.getElementById('stars');
+      const particlesContainer = document.getElementById('particles');
+      const shootingStarsContainer = document.getElementById('shooting-stars');
+      const starCount = 200;
+      const particleCount = 50;
+      
+      // Create static stars
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        // Random position
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        
+        // Random size (0.5px to 3px)
+        const size = 0.5 + Math.random() * 2.5;
+        
+        // Random animation properties
+        const opacity = 0.2 + Math.random() * 0.8;
+        const duration = 2 + Math.random() * 5;
+        const delay = Math.random() * 5;
+        
+        star.style.left = `${x}%`;
+        star.style.top = `${y}%`;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.opacity = opacity;
+        
+        // Apply twinkle animation with random properties
+        star.style.animation = `twinkle ${duration}s infinite ${delay}s alternate`;
+        
+        starsContainer.appendChild(star);
+      }
+      
+      // Create floating particles
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random position
+        const x = Math.random() * 100;
+        const y = Math.random() * 100 + 100; // Start below the viewport
+        
+        // Random size
+        const size = 1 + Math.random() * 2;
+        
+        // Random animation properties
+        const duration = 10 + Math.random() * 20;
+        const delay = Math.random() * 5;
+        const xMovement = -10 + Math.random() * 20; // Horizontal drift
+        
+        particle.style.left = `${x}%`;
+        particle.style.top = `${y}%`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.animation = `float ${duration}s infinite linear ${delay}s`;
+        particle.style.setProperty('--x-movement', `${xMovement}px`);
+        
+        particlesContainer.appendChild(particle);
+      }
+      
+      // Create shooting stars periodically
+      function createShootingStar() {
+        const shootingStar = document.createElement('div');
+        shootingStar.classList.add('shooting-star');
+        
+        // Random position
+        const startX = -50; // Start off-screen to the left
+        const startY = Math.random() * 50; // Random vertical position in top half
+        
+        // Random size
+        const width = 50 + Math.random() * 100;
+        const height = 1 + Math.random() * 2;
+        
+        // Random animation properties
+        const duration = 1 + Math.random() * 2;
+        const delay = Math.random() * 5;
+        
+        shootingStar.style.left = `${startX}px`;
+        shootingStar.style.top = `${startY}%`;
+        shootingStar.style.width = `${width}px`;
+        shootingStar.style.height = `${height}px`;
+        shootingStar.style.animation = `shooting ${duration}s linear ${delay}s`;
+        
+        shootingStarsContainer.appendChild(shootingStar);
+        
+        // Remove shooting star after animation completes
+        setTimeout(() => {
+          shootingStar.remove();
+        }, (duration + delay) * 1000);
+      }
+      
+      // Create initial shooting stars
+      for (let i = 0; i < 3; i++) {
+        setTimeout(createShootingStar, i * 2000);
+      }
+      
+      // Create shooting stars periodically
+      setInterval(createShootingStar, 5000);
+    });
+  </script>
 </body>
 </html>
