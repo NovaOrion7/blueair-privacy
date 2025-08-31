@@ -36,6 +36,34 @@
       background-image: var(--cosmic-gradient);
     }
     
+    /* Language switcher */
+    .language-switch {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .language-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-light);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(5px);
+    }
+    
+    .language-btn:hover, .language-btn.active {
+      background: rgba(135, 206, 250, 0.2);
+      color: var(--text-bright);
+      transform: translateY(-2px);
+    }
+    
     /* Interactive stars background */
     #stars-canvas {
       position: fixed;
@@ -280,6 +308,15 @@
       background: linear-gradient(90deg, transparent, var(--orion-blue), transparent);
     }
     
+    /* Language content */
+    [data-lang] {
+      display: none;
+    }
+    
+    [data-lang].active {
+      display: block;
+    }
+    
     /* Animations */
     @keyframes rotate {
       from { transform: rotate(0deg); }
@@ -320,6 +357,26 @@
       }
     }
     
+    @media (max-width: 768px) {
+      .planet-header {
+        height: 200px;
+      }
+      
+      .header-content {
+        padding-top: 40px;
+      }
+      
+      .galaxy-grid {
+        padding: 0 1rem;
+        gap: 1rem;
+      }
+      
+      .orbit-panel {
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+      }
+    }
+    
     @media (max-width: 576px) {
       .planet-header {
         height: 180px;
@@ -332,10 +389,29 @@
       .header-subtitle {
         font-size: 1rem;
       }
+      
+      .panel-title {
+        font-size: 1.2rem;
+      }
+      
+      .orbit-panel {
+        padding: 1rem;
+      }
+      
+      .language-switch {
+        top: 0.5rem;
+        right: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Language switcher -->
+  <div class="language-switch">
+    <button class="language-btn active" data-lang-toggle="tr">TR</button>
+    <button class="language-btn" data-lang-toggle="en">EN</button>
+  </div>
+  
   <!-- Interactive star field canvas -->
   <canvas id="stars-canvas"></canvas>
   
@@ -347,8 +423,18 @@
       <div class="planet-glow"></div>
       <div class="header-content">
         <div class="orion-icon" id="orion-constellation"></div>
-        <h1 class="header-title">Blue Air Gizlilik Politikası</h1>
-        <p class="header-subtitle">Kişisel verilerinizin güvenliği için adımlarımız</p>
+        
+        <!-- Turkish header -->
+        <div data-lang="tr" class="active">
+          <h1 class="header-title">Blue Air Gizlilik Politikası</h1>
+          <p class="header-subtitle">Kişisel verilerinizin güvenliği için adımlarımız</p>
+        </div>
+        
+        <!-- English header -->
+        <div data-lang="en">
+          <h1 class="header-title">Blue Air Privacy Policy</h1>
+          <p class="header-subtitle">Our steps to protect your personal data</p>
+        </div>
       </div>
     </div>
     
@@ -356,76 +442,149 @@
     <div class="galaxy-grid">
       <!-- Sidebar panels -->
       <div class="sidebar">
+        <!-- Data Protection Panel -->
         <div class="orbit-panel">
           <div class="panel-header">
             <div class="panel-icon">
               <i class="fas fa-shield-alt"></i>
             </div>
-            <h2 class="panel-title">Veri Koruma</h2>
+            
+            <!-- Turkish panel title -->
+            <h2 class="panel-title" data-lang="tr" class="active">Veri Koruma</h2>
+            
+            <!-- English panel title -->
+            <h2 class="panel-title" data-lang="en">Data Protection</h2>
           </div>
-          <div class="highlight-section">
+          
+          <!-- Turkish content -->
+          <div class="highlight-section" data-lang="tr" class="active">
             <p>Blue Air, kullanıcıların gizliliğine büyük önem verir. Bu uygulama, kullanıcıların kişisel verilerini toplamaz, işlemez veya üçüncü taraflarla paylaşmaz.</p>
+          </div>
+          
+          <!-- English content -->
+          <div class="highlight-section" data-lang="en">
+            <p>Blue Air places great importance on user privacy. This application does not collect, process, or share users' personal data with third parties.</p>
           </div>
         </div>
         
+        <!-- Local Data Panel -->
         <div class="orbit-panel">
           <div class="panel-header">
             <div class="panel-icon">
               <i class="fas fa-mobile-alt"></i>
             </div>
-            <h2 class="panel-title">Yerel Veri</h2>
+            
+            <!-- Turkish panel title -->
+            <h2 class="panel-title" data-lang="tr" class="active">Yerel Veri</h2>
+            
+            <!-- English panel title -->
+            <h2 class="panel-title" data-lang="en">Local Data</h2>
           </div>
-          <p>Ayrıca, kullanıcıların arama geçmişi ve favori şehirleri yalnızca kullanıcının cihazında yerel olarak saklanır ve hiçbir şekilde üçüncü taraflara aktarılmaz.</p>
+          
+          <!-- Turkish content -->
+          <p data-lang="tr" class="active">Ayrıca, kullanıcıların arama geçmişi ve favori şehirleri yalnızca kullanıcının cihazında yerel olarak saklanır ve hiçbir şekilde üçüncü taraflara aktarılmaz.</p>
+          
+          <!-- English content -->
+          <p data-lang="en">Additionally, users' search history and favorite cities are stored locally only on the user's device and are not transferred to third parties in any way.</p>
         </div>
         
+        <!-- Contact Panel -->
         <div class="orbit-panel contact-panel">
           <div class="panel-header">
             <div class="panel-icon">
               <i class="fas fa-envelope"></i>
             </div>
-            <h2 class="panel-title">İletişim</h2>
+            
+            <!-- Turkish panel title -->
+            <h2 class="panel-title" data-lang="tr" class="active">İletişim</h2>
+            
+            <!-- English panel title -->
+            <h2 class="panel-title" data-lang="en">Contact</h2>
           </div>
-          <p>Herhangi bir sorunuz varsa bizimle iletişime geçebilirsiniz:</p>
+          
+          <!-- Turkish content -->
+          <p data-lang="tr" class="active">Herhangi bir sorunuz varsa bizimle iletişime geçebilirsiniz:</p>
+          
+          <!-- English content -->
+          <p data-lang="en">If you have any questions, you can contact us at:</p>
+          
           <a href="mailto:nova.orion.dev@gmail.com" class="contact-email">nova.orion.dev@gmail.com</a>
         </div>
       </div>
       
       <!-- Main content panels -->
       <div class="main-content">
+        <!-- Data Usage Panel -->
         <div class="orbit-panel">
           <div class="panel-header">
             <div class="panel-icon">
               <i class="fas fa-database"></i>
             </div>
-            <h2 class="panel-title">Veri Kullanımı</h2>
+            
+            <!-- Turkish panel title -->
+            <h2 class="panel-title" data-lang="tr" class="active">Veri Kullanımı</h2>
+            
+            <!-- English panel title -->
+            <h2 class="panel-title" data-lang="en">Data Usage</h2>
           </div>
-          <p>Uygulama, hava durumu verilerini göstermek amacıyla OpenWeather gibi üçüncü taraf API'leri kullanır. Bu servisler, konum bilgisi talep edebilir ancak bu veriler yalnızca geçici olarak kullanılır ve geliştirici tarafından saklanmaz veya üçüncü taraflarla paylaşılmaz.</p>
+          
+          <!-- Turkish content -->
+          <p data-lang="tr" class="active">Uygulama, hava durumu verilerini göstermek amacıyla OpenWeather gibi üçüncü taraf API'leri kullanır. Bu servisler, konum bilgisi talep edebilir ancak bu veriler yalnızca geçici olarak kullanılır ve geliştirici tarafından saklanmaz veya üçüncü taraflarla paylaşılmaz.</p>
+          
+          <!-- English content -->
+          <p data-lang="en">The application uses third-party APIs such as OpenWeather to display weather data. These services may request location information, but this data is used only temporarily and is not stored or shared with third parties by the developer.</p>
         </div>
         
+        <!-- Third-Party Services Panel -->
         <div class="orbit-panel">
           <div class="panel-header">
             <div class="panel-icon">
               <i class="fas fa-external-link-alt"></i>
             </div>
-            <h2 class="panel-title">Üçüncü Taraf Hizmetler</h2>
+            
+            <!-- Turkish panel title -->
+            <h2 class="panel-title" data-lang="tr" class="active">Üçüncü Taraf Hizmetler</h2>
+            
+            <!-- English panel title -->
+            <h2 class="panel-title" data-lang="en">Third-Party Services</h2>
           </div>
-          <p>OpenWeather ve benzeri servislerin kendi gizlilik politikaları farklı olabilir; kullanıcıların bu politikaları incelemesi önerilir.</p>
+          
+          <!-- Turkish content -->
+          <p data-lang="tr" class="active">OpenWeather ve benzeri servislerin kendi gizlilik politikaları farklı olabilir; kullanıcıların bu politikaları incelemesi önerilir.</p>
+          
+          <!-- English content -->
+          <p data-lang="en">OpenWeather and similar services may have their own privacy policies; users are advised to review these policies.</p>
         </div>
         
+        <!-- Updates Panel -->
         <div class="orbit-panel">
           <div class="panel-header">
             <div class="panel-icon">
               <i class="fas fa-sync-alt"></i>
             </div>
-            <h2 class="panel-title">Güncellemeler</h2>
+            
+            <!-- Turkish panel title -->
+            <h2 class="panel-title" data-lang="tr" class="active">Güncellemeler</h2>
+            
+            <!-- English panel title -->
+            <h2 class="panel-title" data-lang="en">Updates</h2>
           </div>
-          <p>Gizlilik politikamız zaman zaman güncellenebilir. Güncel politika için uygulama içi veya mağaza sayfasını kontrol edebilirsiniz.</p>
+          
+          <!-- Turkish content -->
+          <p data-lang="tr" class="active">Gizlilik politikamız zaman zaman güncellenebilir. Güncel politika için uygulama içi veya mağaza sayfasını kontrol edebilirsiniz.</p>
+          
+          <!-- English content -->
+          <p data-lang="en">Our privacy policy may be updated from time to time. You can check the in-app or store page for the current policy.</p>
         </div>
       </div>
     </div>
     
     <footer class="footer">
-      <p>Blue Air - Nova Orion &copy; 2025 | Tüm hakları saklıdır</p>
+      <!-- Turkish footer -->
+      <p data-lang="tr" class="active">Blue Air - Nova Orion &copy; 2025 | Tüm hakları saklıdır</p>
+      
+      <!-- English footer -->
+      <p data-lang="en">Blue Air - Nova Orion &copy; 2025 | All rights reserved</p>
     </footer>
   </div>
   
@@ -487,6 +646,30 @@
         line.style.transform = `rotate(${angle}deg)`;
         
         orionIcon.appendChild(line);
+      });
+      
+      // Language switcher functionality
+      const languageButtons = document.querySelectorAll('[data-lang-toggle]');
+      
+      languageButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const language = this.getAttribute('data-lang-toggle');
+          
+          // Update active button
+          languageButtons.forEach(btn => {
+            btn.classList.remove('active');
+          });
+          this.classList.add('active');
+          
+          // Update displayed content
+          document.querySelectorAll('[data-lang]').forEach(element => {
+            if (element.getAttribute('data-lang') === language) {
+              element.classList.add('active');
+            } else {
+              element.classList.remove('active');
+            }
+          });
+        });
       });
       
       // Interactive stars background
