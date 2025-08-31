@@ -317,6 +317,15 @@
       display: block;
     }
     
+    /* Panel titles should always be visible regardless of language */
+    h2.panel-title[data-lang] {
+      display: block;
+    }
+    
+    h2.panel-title[data-lang]:not(.active) {
+      display: none;
+    }
+
     /* Animations */
     @keyframes rotate {
       from { transform: rotate(0deg); }
@@ -449,10 +458,8 @@
               <i class="fas fa-shield-alt"></i>
             </div>
             
-            <!-- Turkish panel title -->
+            <!-- Panel titles -->
             <h2 class="panel-title" data-lang="tr" class="active">Veri Koruma</h2>
-            
-            <!-- English panel title -->
             <h2 class="panel-title" data-lang="en">Data Protection</h2>
           </div>
           
@@ -474,10 +481,8 @@
               <i class="fas fa-mobile-alt"></i>
             </div>
             
-            <!-- Turkish panel title -->
+            <!-- Panel titles -->
             <h2 class="panel-title" data-lang="tr" class="active">Yerel Veri</h2>
-            
-            <!-- English panel title -->
             <h2 class="panel-title" data-lang="en">Local Data</h2>
           </div>
           
@@ -495,10 +500,8 @@
               <i class="fas fa-envelope"></i>
             </div>
             
-            <!-- Turkish panel title -->
+            <!-- Panel titles -->
             <h2 class="panel-title" data-lang="tr" class="active">İletişim</h2>
-            
-            <!-- English panel title -->
             <h2 class="panel-title" data-lang="en">Contact</h2>
           </div>
           
@@ -521,10 +524,8 @@
               <i class="fas fa-database"></i>
             </div>
             
-            <!-- Turkish panel title -->
+            <!-- Panel titles -->
             <h2 class="panel-title" data-lang="tr" class="active">Veri Kullanımı</h2>
-            
-            <!-- English panel title -->
             <h2 class="panel-title" data-lang="en">Data Usage</h2>
           </div>
           
@@ -542,10 +543,8 @@
               <i class="fas fa-external-link-alt"></i>
             </div>
             
-            <!-- Turkish panel title -->
+            <!-- Panel titles -->
             <h2 class="panel-title" data-lang="tr" class="active">Üçüncü Taraf Hizmetler</h2>
-            
-            <!-- English panel title -->
             <h2 class="panel-title" data-lang="en">Third-Party Services</h2>
           </div>
           
@@ -563,10 +562,8 @@
               <i class="fas fa-sync-alt"></i>
             </div>
             
-            <!-- Turkish panel title -->
+            <!-- Panel titles -->
             <h2 class="panel-title" data-lang="tr" class="active">Güncellemeler</h2>
-            
-            <!-- English panel title -->
             <h2 class="panel-title" data-lang="en">Updates</h2>
           </div>
           
@@ -650,6 +647,20 @@
       
       // Language switcher functionality
       const languageButtons = document.querySelectorAll('[data-lang-toggle]');
+      
+      // Make sure all Turkish content is visible by default
+      document.querySelectorAll('[data-lang="tr"]').forEach(element => {
+        element.classList.add('active');
+      });
+      
+      // Make sure all English content is hidden by default
+      document.querySelectorAll('[data-lang="en"]').forEach(element => {
+        element.classList.remove('active');
+      });
+      
+      // Ensure language buttons reflect the current state
+      document.querySelector('[data-lang-toggle="tr"]').classList.add('active');
+      document.querySelector('[data-lang-toggle="en"]').classList.remove('active');
       
       languageButtons.forEach(button => {
         button.addEventListener('click', function() {
