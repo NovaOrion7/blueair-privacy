@@ -136,6 +136,8 @@
       color: var(--text-bright);
       margin-bottom: 0.5rem;
       text-shadow: 0 0 15px rgba(135, 206, 250, 0.8);
+      padding: 0 10px;
+      line-height: 1.2;
     }
     
     .header-subtitle {
@@ -143,6 +145,7 @@
       font-weight: 400;
       color: var(--text-light);
       margin-bottom: 1.5rem;
+      padding: 0 15px;
     }
     
     /* Constellation icon */
@@ -364,6 +367,25 @@
       .header-title {
         font-size: 2.5rem;
       }
+      
+      /* Reorder panels on smaller screens */
+      .sidebar {
+        order: 2;
+      }
+      
+      .main-content {
+        order: 1;
+      }
+      
+      /* Move contact panel to the bottom */
+      .galaxy-grid {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .contact-panel {
+        order: 3;
+      }
     }
     
     @media (max-width: 768px) {
@@ -373,6 +395,10 @@
       
       .header-content {
         padding-top: 40px;
+      }
+      
+      .header-title {
+        font-size: 2.2rem;
       }
       
       .galaxy-grid {
@@ -388,15 +414,22 @@
     
     @media (max-width: 576px) {
       .planet-header {
-        height: 180px;
+        height: 200px;
+      }
+      
+      .header-content {
+        padding-top: 40px;
       }
       
       .header-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        word-wrap: break-word;
+        line-height: 1.2;
       }
       
       .header-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        padding: 0 10px;
       }
       
       .panel-title {
@@ -410,6 +443,11 @@
       .language-switch {
         top: 0.5rem;
         right: 0.5rem;
+      }
+      
+      .orion-icon {
+        width: 50px;
+        height: 50px;
       }
     }
   </style>
