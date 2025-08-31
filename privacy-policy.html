@@ -136,8 +136,11 @@
       color: var(--text-bright);
       margin-bottom: 0.5rem;
       text-shadow: 0 0 15px rgba(135, 206, 250, 0.8);
-      padding: 0 10px;
+      padding: 0 15px;
       line-height: 1.2;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
     
     .header-subtitle {
@@ -146,8 +149,11 @@
       color: var(--text-light);
       margin-bottom: 1.5rem;
       padding: 0 15px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
-    
+
     /* Constellation icon */
     .orion-icon {
       display: inline-block;
@@ -414,22 +420,31 @@
     
     @media (max-width: 576px) {
       .planet-header {
-        height: 200px;
+        height: 220px;
       }
       
       .header-content {
         padding-top: 40px;
+        width: 100%;
+        box-sizing: border-box;
       }
       
       .header-title {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         word-wrap: break-word;
         line-height: 1.2;
+        padding: 0 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
       }
       
       .header-subtitle {
         font-size: 0.9rem;
-        padding: 0 10px;
+        padding: 0 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
       }
       
       .panel-title {
@@ -450,6 +465,23 @@
         height: 50px;
       }
     }
+    
+    /* Extra small devices */
+    @media (max-width: 400px) {
+      .header-title {
+        font-size: 1.4rem;
+        padding: 0 15px;
+      }
+      
+      .header-subtitle {
+        font-size: 0.85rem;
+      }
+      
+      .planet-header {
+        height: 200px;
+      }
+    }
+
   </style>
 </head>
 <body>
