@@ -4,86 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blue Air Gizlilik Politikası</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
+    :root {
+      --orion-blue: #87cefa;
+      --star-gold: #ffd700;
+      --nebula-purple: #9370db;
+      --cosmic-dark: #0a0a2a;
+      --cosmic-darker: #000011;
+      --text-light: #e0e0ff;
+      --text-muted: #a0a0c0;
+    }
+    
+    * {
       margin: 0;
       padding: 0;
-      background-color: #0a0a2a;
-      color: #e0e0ff;
-      overflow-x: hidden;
-      position: relative;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
+      background-color: var(--cosmic-darker);
+      color: var(--text-light);
       min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
     
-    /* Deep space background with stars */
-    .space-background {
+    /* Modern space background */
+    .cosmos {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
-      background: #000011;
+      overflow: hidden;
     }
     
-    /* Orion constellation pattern */
-    .orion-constellation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-image: 
-        radial-gradient(2px 2px at 20px 30px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 40px 70px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 60px 40px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 80px 90px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 100px 50px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 120px 80px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 140px 20px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 160px 60px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(3px 3px at 180px 100px, #ffd700, rgba(255, 215, 0, 0)),
-        radial-gradient(2px 2px at 200px 30px, #9370db, rgba(147, 112, 219, 0)),
-        radial-gradient(2px 2px at 220px 70px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 240px 40px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(3px 3px at 260px 90px, #ffd700, rgba(255, 215, 0, 0)),
-        radial-gradient(2px 2px at 280px 50px, #9370db, rgba(147, 112, 219, 0)),
-        radial-gradient(2px 2px at 300px 80px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 320px 20px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 340px 60px, #9370db, rgba(147, 112, 219, 0)),
-        radial-gradient(3px 3px at 360px 100px, #ffd700, rgba(255, 215, 0, 0)),
-        radial-gradient(2px 2px at 380px 30px, #87cefa, rgba(135, 206, 250, 0)),
-        radial-gradient(2px 2px at 400px 70px, #87cefa, rgba(135, 206, 250, 0));
-      background-repeat: repeat;
-      background-size: 420px 120px;
-      animation: constellationMove 120s linear infinite;
-      opacity: 0.7;
-    }
-    
-    /* Nebula effect */
-    .nebula {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: 
-        radial-gradient(ellipse at 20% 80%, rgba(135, 206, 250, 0.15) 0%, transparent 40%),
-        radial-gradient(ellipse at 80% 20%, rgba(147, 112, 219, 0.15) 0%, transparent 40%),
-        radial-gradient(ellipse at 40% 40%, rgba(255, 215, 0, 0.1) 0%, transparent 30%);
-      animation: nebulaPulse 15s ease-in-out infinite alternate;
-    }
-    
-    /* Stars */
     .stars {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      background: var(--cosmic-darker);
     }
     
     .star {
@@ -92,213 +58,183 @@
       border-radius: 50%;
     }
     
-    .twinkling-stars {
-      position: fixed;
+    .orion-constellation {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
       background-image: 
-        radial-gradient(1px 1px at 25px 35px, #fff, transparent),
-        radial-gradient(1px 1px at 50px 75px, #fff, transparent),
-        radial-gradient(1px 1px at 75px 45px, #fff, transparent),
-        radial-gradient(1px 1px at 100px 95px, #fff, transparent),
-        radial-gradient(1px 1px at 125px 55px, #fff, transparent),
-        radial-gradient(1px 1px at 150px 85px, #fff, transparent),
-        radial-gradient(1px 1px at 175px 25px, #fff, transparent),
-        radial-gradient(1px 1px at 200px 65px, #fff, transparent),
-        radial-gradient(1px 1px at 225px 35px, #fff, transparent),
-        radial-gradient(1px 1px at 250px 75px, #fff, transparent),
-        radial-gradient(1px 1px at 275px 45px, #fff, transparent),
-        radial-gradient(1px 1px at 300px 95px, #fff, transparent),
-        radial-gradient(1px 1px at 325px 55px, #fff, transparent),
-        radial-gradient(1px 1px at 350px 85px, #fff, transparent),
-        radial-gradient(1px 1px at 375px 25px, #fff, transparent),
-        radial-gradient(1px 1px at 400px 65px, #fff, transparent);
-      background-repeat: repeat;
-      background-size: 420px 120px;
-      animation: twinkle 4s ease-in-out infinite alternate;
+        radial-gradient(3px 3px at 20% 30%, var(--orion-blue), transparent),
+        radial-gradient(3px 3px at 40% 70%, var(--orion-blue), transparent),
+        radial-gradient(3px 3px at 60% 40%, var(--orion-blue), transparent),
+        radial-gradient(3px 3px at 80% 90%, var(--orion-blue), transparent),
+        radial-gradient(4px 4px at 30% 50%, var(--star-gold), transparent),
+        radial-gradient(3px 3px at 70% 20%, var(--nebula-purple), transparent),
+        radial-gradient(3px 3px at 50% 80%, var(--orion-blue), transparent),
+        radial-gradient(4px 4px at 90% 60%, var(--star-gold), transparent);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      opacity: 0.7;
+      animation: constellationPulse 8s ease-in-out infinite;
     }
     
-    /* Shooting stars */
+    .nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.2;
+      z-index: 1;
+    }
+    
     .shooting-star {
       position: absolute;
       height: 2px;
-      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(135, 206, 250, 1) 50%, rgba(255,255,255,0) 100%);
+      background: linear-gradient(90deg, transparent, var(--orion-blue), transparent);
       border-radius: 50%;
-      filter: drop-shadow(0 0 6px rgba(135, 206, 250, 0.8));
+      box-shadow: 0 0 10px var(--orion-blue);
       animation: shooting 3s linear infinite;
       opacity: 0;
     }
     
-    /* Floating particles */
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background-color: rgba(135, 206, 250, 0.7);
-      border-radius: 50%;
-      animation: float 15s infinite linear;
-    }
-    
+    /* Main content styling */
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 2rem;
       position: relative;
       z-index: 10;
     }
     
     header {
       text-align: center;
-      padding: 30px 0;
-      background: linear-gradient(135deg, rgba(26, 26, 74, 0.8), rgba(10, 10, 42, 0.8));
-      border-bottom: 2px solid #4a4a8a;
-      margin-bottom: 30px;
-      border-radius: 0 0 10px 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      padding: 3rem 0;
+      margin-bottom: 2rem;
       position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(5px);
     }
     
-    header::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(135, 206, 250, 0.1) 0%, transparent 70%);
-      animation: rotate 20s linear infinite;
-      z-index: -1;
+    .logo {
+      font-size: 3.5rem;
+      color: var(--orion-blue);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(135, 206, 250, 0.5);
     }
     
     h1 {
-      color: #87cefa;
-      font-size: 2.5em;
-      margin: 0;
-      text-shadow: 0 0 10px rgba(135, 206, 250, 0.7);
-      position: relative;
-      z-index: 2;
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--orion-blue), var(--star-gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
     }
     
-    h2 {
-      color: #9370db;
-      border-bottom: 1px solid #4a4a8a;
-      padding-bottom: 10px;
-      margin-top: 30px;
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
     }
     
-    p {
-      margin-bottom: 20px;
-      font-size: 1.1em;
-    }
-    
-    .highlight {
-      background-color: rgba(135, 206, 250, 0.1);
-      padding: 15px;
-      border-left: 4px solid #87cefa;
-      border-radius: 0 8px 8px 0;
-      margin: 20px 0;
+    .card {
+      background: rgba(26, 26, 74, 0.4);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(135, 206, 250, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(2px);
     }
     
-    .highlight::before {
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(135, 206, 250, 0.2);
+    }
+    
+    .card::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(135, 206, 250, 0.1), transparent);
-      transform: translateX(-100%);
-      animation: shimmer 3s infinite;
+      height: 4px;
+      background: linear-gradient(90deg, var(--orion-blue), var(--nebula-purple));
     }
     
-    .contact {
-      background-color: rgba(147, 112, 219, 0.15);
-      padding: 20px;
-      border-radius: 8px;
+    h2 {
+      font-size: 1.8rem;
+      color: var(--orion-blue);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    h2 i {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .highlight-box {
+      background: rgba(135, 206, 250, 0.1);
+      border-left: 4px solid var(--orion-blue);
+      padding: 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+    
+    .contact-card {
       text-align: center;
-      margin: 30px 0;
-      border: 1px solid #9370db;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(3px);
+      background: rgba(147, 112, 219, 0.15);
+      border: 1px solid rgba(147, 112, 219, 0.3);
     }
     
-    .contact::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(
-        transparent, 
-        rgba(135, 206, 250, 0.3), 
-        transparent 30%
-      );
-      animation: rotate 5s linear infinite;
-      z-index: -1;
+    .contact-card h2 {
+      color: var(--nebula-purple);
     }
     
-    .contact strong {
-      color: #87cefa;
-      font-size: 1.2em;
-      position: relative;
-      z-index: 2;
+    .email {
+      font-size: 1.4rem;
+      color: var(--orion-blue);
+      font-weight: 600;
+      margin: 1rem 0;
+      display: inline-block;
     }
     
     footer {
       text-align: center;
-      padding: 20px;
-      margin-top: 30px;
-      border-top: 1px solid #4a4a8a;
-      color: #a0a0c0;
-      font-size: 0.9em;
+      padding: 2rem;
+      margin-top: 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(135, 206, 250, 0.1);
     }
     
-    @keyframes twinkle {
-      0% { opacity: 0.2; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-    
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-    
-    @keyframes constellationMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-120px); }
-    }
-    
-    @keyframes nebulaPulse {
-      0% { opacity: 0.5; }
-      100% { opacity: 0.8; }
+    /* Animations */
+    @keyframes constellationPulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.02); }
     }
     
     @keyframes shooting {
       0% {
-        transform: translateX(-100px) translateY(-100px);
+        transform: translateX(-100px) translateY(0);
         opacity: 0;
       }
       10% {
         opacity: 1;
       }
       100% {
-        transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px));
+        transform: translateX(calc(100vw + 100px)) translateY(100px);
         opacity: 0;
       }
     }
@@ -309,81 +245,109 @@
         opacity: 0;
       }
       10% {
-        opacity: 1;
+        opacity: 0.7;
       }
       90% {
-        opacity: 1;
+        opacity: 0.7;
       }
       100% {
-        transform: translateY(-100vh) translateX(20px);
+        transform: translateY(-100vh) translateX(var(--x-move));
         opacity: 0;
+      }
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Space background elements -->
-  <div class="space-background"></div>
-  <div class="orion-constellation"></div>
-  <div class="nebula"></div>
-  <div class="stars" id="stars"></div>
-  <div class="twinkling-stars"></div>
-  <div class="particles" id="particles"></div>
-  <div class="shooting-stars" id="shooting-stars"></div>
+  <!-- Modern space background -->
+  <div class="cosmos">
+    <div class="stars" id="stars"></div>
+    <div class="orion-constellation"></div>
+    <div class="nebulae" id="nebulae"></div>
+    <div class="shooting-stars" id="shooting-stars"></div>
+  </div>
   
   <div class="container">
     <header>
+      <div class="logo">
+        <i class="fas fa-cloud"></i>
+      </div>
       <h1>Blue Air Gizlilik Politikası</h1>
+      <p class="subtitle">Kişisel verilerinizin güvenliği için adımlarımız</p>
     </header>
     
-    <div class="highlight">
-      <p>Blue Air, kullanıcıların gizliliğine büyük önem verir. Bu uygulama, kullanıcıların kişisel verilerini toplamaz, işlemez veya üçüncü taraflarla paylaşmaz.</p>
+    <div class="card">
+      <h2><i class="fas fa-shield-alt"></i> Veri Koruma Taahhüdümüz</h2>
+      <div class="highlight-box">
+        <p>Blue Air, kullanıcıların gizliliğine büyük önem verir. Bu uygulama, kullanıcıların kişisel verilerini toplamaz, işlemez veya üçüncü taraflarla paylaşmaz.</p>
+      </div>
     </div>
     
-    <h2>Veri Kullanımı</h2>
-    <p>Uygulama, hava durumu verilerini göstermek amacıyla OpenWeather gibi üçüncü taraf API'leri kullanır. Bu servisler, konum bilgisi talep edebilir ancak bu veriler yalnızca geçici olarak kullanılır ve geliştirici tarafından saklanmaz veya üçüncü taraflarla paylaşılmaz.</p>
+    <div class="card">
+      <h2><i class="fas fa-database"></i> Veri Kullanımı</h2>
+      <p>Uygulama, hava durumu verilerini göstermek amacıyla OpenWeather gibi üçüncü taraf API'leri kullanır. Bu servisler, konum bilgisi talep edebilir ancak bu veriler yalnızca geçici olarak kullanılır ve geliştirici tarafından saklanmaz veya üçüncü taraflarla paylaşılmaz.</p>
+    </div>
     
-    <h2>Yerel Veri Saklama</h2>
-    <p>Ayrıca, kullanıcıların arama geçmişi ve favori şehirleri yalnızca kullanıcının cihazında yerel olarak saklanır ve hiçbir şekilde üçüncü taraflara aktarılmaz.</p>
+    <div class="card">
+      <h2><i class="fas fa-mobile-alt"></i> Yerel Veri Saklama</h2>
+      <p>Ayrıca, kullanıcıların arama geçmişi ve favori şehirleri yalnızca kullanıcının cihazında yerel olarak saklanır ve hiçbir şekilde üçüncü taraflara aktarılmaz.</p>
+    </div>
     
-    <h2>Üçüncü Taraf Hizmetler</h2>
-    <p>OpenWeather ve benzeri servislerin kendi gizlilik politikaları farklı olabilir; kullanıcıların bu politikaları incelemesi önerilir.</p>
+    <div class="card">
+      <h2><i class="fas fa-external-link-alt"></i> Üçüncü Taraf Hizmetler</h2>
+      <p>OpenWeather ve benzeri servislerin kendi gizlilik politikaları farklı olabilir; kullanıcıların bu politikaları incelemesi önerilir.</p>
+    </div>
     
-    <h2>Güncellemeler</h2>
-    <p>Gizlilik politikamız zaman zaman güncellenebilir. Güncel politika için uygulama içi veya mağaza sayfasını kontrol edebilirsiniz.</p>
+    <div class="card">
+      <h2><i class="fas fa-sync-alt"></i> Güncellemeler</h2>
+      <p>Gizlilik politikamız zaman zaman güncellenebilir. Güncel politika için uygulama içi veya mağaza sayfasını kontrol edebilirsiniz.</p>
+    </div>
     
-    <div class="contact">
+    <div class="card contact-card">
+      <h2><i class="fas fa-envelope"></i> İletişim</h2>
       <p>Herhangi bir sorunuz varsa bizimle iletişime geçebilirsiniz:</p>
-      <p><strong>nova.orion.dev@gmail.com</strong></p>
+      <div class="email">nova.orion.dev@gmail.com</div>
     </div>
     
     <footer>
       <p>Blue Air - Nova Orion &copy; 2025</p>
+      <p>Tüm hakları saklıdır</p>
     </footer>
   </div>
   
   <script>
-    // Create dynamic stars
     document.addEventListener('DOMContentLoaded', function() {
       const starsContainer = document.getElementById('stars');
-      const particlesContainer = document.getElementById('particles');
+      const nebulaeContainer = document.getElementById('nebulae');
       const shootingStarsContainer = document.getElementById('shooting-stars');
-      const starCount = 200;
-      const particleCount = 50;
       
-      // Create static stars
-      for (let i = 0; i < starCount; i++) {
+      // Create stars
+      for (let i = 0; i < 200; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
         
-        // Random position
         const x = Math.random() * 100;
         const y = Math.random() * 100;
-        
-        // Random size (0.5px to 3px)
-        const size = 0.5 + Math.random() * 2.5;
-        
-        // Random animation properties
+        const size = Math.random() * 3;
         const opacity = 0.2 + Math.random() * 0.8;
         const duration = 2 + Math.random() * 5;
         const delay = Math.random() * 5;
@@ -393,78 +357,67 @@
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
         star.style.opacity = opacity;
-        
-        // Apply twinkle animation with random properties
-        star.style.animation = `twinkle ${duration}s infinite ${delay}s alternate`;
+        star.style.animation = `twinkle ${duration}s infinite ${delay}s`;
         
         starsContainer.appendChild(star);
       }
       
-      // Create floating particles
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
+      // Create nebulae
+      const nebulaColors = [
+        'rgba(135, 206, 250, 0.15)',  // orion-blue
+        'rgba(147, 112, 219, 0.15)',  // nebula-purple
+        'rgba(255, 215, 0, 0.1)'      // star-gold
+      ];
+      
+      for (let i = 0; i < 5; i++) {
+        const nebula = document.createElement('div');
+        nebula.classList.add('nebula');
         
-        // Random position
         const x = Math.random() * 100;
-        const y = Math.random() * 100 + 100; // Start below the viewport
+        const y = Math.random() * 100;
+        const size = 200 + Math.random() * 300;
+        const color = nebulaColors[Math.floor(Math.random() * nebulaColors.length)];
+        const duration = 20 + Math.random() * 20;
         
-        // Random size
-        const size = 1 + Math.random() * 2;
+        nebula.style.left = `${x}%`;
+        nebula.style.top = `${y}%`;
+        nebula.style.width = `${size}px`;
+        nebula.style.height = `${size}px`;
+        nebula.style.backgroundColor = color;
+        nebula.style.animation = `float ${duration}s infinite linear`;
+        nebula.style.setProperty('--x-move', `${-50 + Math.random() * 100}px`);
         
-        // Random animation properties
-        const duration = 10 + Math.random() * 20;
-        const delay = Math.random() * 5;
-        const xMovement = -10 + Math.random() * 20; // Horizontal drift
-        
-        particle.style.left = `${x}%`;
-        particle.style.top = `${y}%`;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.animation = `float ${duration}s infinite linear ${delay}s`;
-        particle.style.setProperty('--x-movement', `${xMovement}px`);
-        
-        particlesContainer.appendChild(particle);
+        nebulaeContainer.appendChild(nebula);
       }
       
-      // Create shooting stars periodically
+      // Create shooting stars
       function createShootingStar() {
         const shootingStar = document.createElement('div');
         shootingStar.classList.add('shooting-star');
         
-        // Random position
-        const startX = -50; // Start off-screen to the left
-        const startY = Math.random() * 50; // Random vertical position in top half
-        
-        // Random size
+        const startY = Math.random() * 50;
         const width = 50 + Math.random() * 100;
-        const height = 1 + Math.random() * 2;
-        
-        // Random animation properties
         const duration = 1 + Math.random() * 2;
-        const delay = Math.random() * 5;
+        const delay = Math.random() * 10;
         
-        shootingStar.style.left = `${startX}px`;
         shootingStar.style.top = `${startY}%`;
         shootingStar.style.width = `${width}px`;
-        shootingStar.style.height = `${height}px`;
         shootingStar.style.animation = `shooting ${duration}s linear ${delay}s`;
         
         shootingStarsContainer.appendChild(shootingStar);
         
-        // Remove shooting star after animation completes
         setTimeout(() => {
           shootingStar.remove();
         }, (duration + delay) * 1000);
       }
       
-      // Create initial shooting stars
+      // Initial shooting stars
       for (let i = 0; i < 3; i++) {
-        setTimeout(createShootingStar, i * 2000);
+        setTimeout(createShootingStar, i * 3000);
       }
       
-      // Create shooting stars periodically
-      setInterval(createShootingStar, 5000);
+      // Periodic shooting stars
+      setInterval(createShootingStar, 8000);
     });
   </script>
 </body>
